@@ -1,6 +1,6 @@
 
 
-## Installation
+### Installation
 
 1. Install Foundry
 2. forge install
