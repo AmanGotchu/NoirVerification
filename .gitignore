@@ -11,3 +11,6 @@ out/
 .env
 
 typescript/node_modules/
+
+# Noir build files
+/**/*.proof
