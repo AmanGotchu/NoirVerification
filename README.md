@@ -8,18 +8,18 @@
 
 ### Generate Solidity Contract
 
-```cd circuits && nargo contract && mv ./contract/plonk_vk.sol ../src/plonk_vk.sol```
+`cd circuits && nargo contract && mv ./contract/plonk_vk.sol ../src/plonk_vk.sol`
 
 ### Anvil
 In a different terminal, start local Ethereum
-```
+`
 anvil
-```
+`
 
 ### Deploy Contract
 In root folder
 
-```forge create ./src/plonk_vk.sol:TurboVerifier --rpc-url http://127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80```
+`forge create ./src/plonk_vk.sol:TurboVerifier --rpc-url http://127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`
 
 ### Fill in Env variables
 
@@ -32,12 +32,12 @@ Put the deployed contract address in ./typescript/.env
 
 ### Run script
 
-```
-cd typescript && yarn ts-node index.ts --input {field_element}
+`cd typescript && yarn ts-node index.ts --input {field_element}`
 
-// Example
-cd typescript && yarn ts-node index.ts --input 5
-```
+Example
+
+`cd typescript && yarn ts-node index.ts --input 5`
+
 
 ### Notes
 
