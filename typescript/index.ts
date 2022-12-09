@@ -52,8 +52,8 @@ async function submitProofTx(
   const verifierContract = new ethers.Contract(
     process.env.VERIFIER_CONTRACT_ADDR!,
     new ethers.utils.Interface([
-      // "function verify(bytes calldata, bytes calldata) public view returns (bool)",
-      "function verify(bytes calldata, bytes calldata) public view returns (bool)",
+      // "function verify(bytes calldata) public view returns (bool)",
+      "function verify(bytes calldata) public view returns (bool)",
     ]),
     signer
   );
@@ -61,7 +61,8 @@ async function submitProofTx(
   // Takes a byte array!
   console.log("Sending proof for verification!", proof);
   console.log("Pub inputs", pubInputs);
-  const verifiedResult = await verifierContract.verify(proof, pubInputs);
+  let fullProof = Buffer.concat([pubInputs, proof]);
+  const verifiedResult = await verifierContract.verify(fullProof);
   return verifiedResult;
 }
 
@@ -85,6 +86,7 @@ async function main() {
   const provider = new ethers.providers.StaticJsonRpcProvider(
     process.env.RPC_URL!
   );
+  console.dir(process.env);
   const signer = new ethers.Wallet(process.env.PRIVATE_KEY!).connect(provider);
 
   // Generate proof input file.
